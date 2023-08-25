@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "UdUBRdFI8jKbEB3oh5LM2fdQVvHQGZVrS4OH3bUbr6Phsd7I0ztGQKQyIiiZyDOxJg8AOJv8C/oLOWfLKX81MQ==",
+  "success": true,
+  "projectFilePath": "F:\\Projects\\SYNM\\src\\Infrastructure\\Infrastructure.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.selise.biz/nuget'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
