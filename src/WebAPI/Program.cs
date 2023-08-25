@@ -7,6 +7,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure services for reference assemblies
+
+builder.Services.AddInfrastructure();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
