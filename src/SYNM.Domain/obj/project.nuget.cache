@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OMbdzzXk5OthMbYiYnLZxETEgoWcLhURzhF32bxyNJKI7og37H8lDVPOlYqlqSI+g631N/Fb1XWIAmoGLiqj3Q==",
+  "dgSpecHash": "Ij4x2XyPPuUfykLFFQfAGpNHYViEJBA+rlGiv+axOjEsZJ9RAlWaAapt4yU/H9Iv7VSRUGkp9IK5v4GNqJIioA==",
   "success": true,
-  "projectFilePath": "F:\\Projects\\SYNM\\src\\SYNM.Domain\\SYNM.Domain.csproj",
+  "projectFilePath": "D:\\Data\\My Code\\Open Sourse\\CleanArchitectureWithCQRS\\src\\SYNM.Domain\\SYNM.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

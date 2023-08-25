@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p0ASmfAVrslBu7UFxm3lf49e+dOZr8utAH7NRiPuFudnOZGIl55NGgzLWE6CYkl6oi+LsMXPDnxciCZXhidB5Q==",
+  "dgSpecHash": "G6n2pNTHUZScSRT0ZddAL8N5QRvNRjbZGhDc/WHL2CmZX0jq3XDVCk/+pr70vVEZVh6CgLZG6rWI4Zml7Qmn7g==",
   "success": true,
-  "projectFilePath": "F:\\Projects\\SYNM\\src\\SYNM.Infrastructure\\SYNM.Infrastructure.csproj",
+  "projectFilePath": "D:\\Data\\My Code\\Open Sourse\\CleanArchitectureWithCQRS\\src\\SYNM.Infrastructure\\SYNM.Infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

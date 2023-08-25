@@ -3958,23 +3958,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\H A S A N\\.nuget\\packages\\": {},
+    "C:\\Users\\user\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Projects\\SYNM\\tests\\SYNM.Domain.UnitTests\\SYNM.Domain.UnitTests.csproj",
+      "projectUniqueName": "D:\\Data\\My Code\\Open Sourse\\CleanArchitectureWithCQRS\\tests\\SYNM.Domain.UnitTests\\SYNM.Domain.UnitTests.csproj",
       "projectName": "SYNM.Domain.UnitTests",
-      "projectPath": "F:\\Projects\\SYNM\\tests\\SYNM.Domain.UnitTests\\SYNM.Domain.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\H A S A N\\.nuget\\packages\\",
-      "outputPath": "F:\\Projects\\SYNM\\tests\\SYNM.Domain.UnitTests\\obj\\",
+      "projectPath": "D:\\Data\\My Code\\Open Sourse\\CleanArchitectureWithCQRS\\tests\\SYNM.Domain.UnitTests\\SYNM.Domain.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "D:\\Data\\My Code\\Open Sourse\\CleanArchitectureWithCQRS\\tests\\SYNM.Domain.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\H A S A N\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3983,7 +3983,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.selise.biz/nuget": {}
       },
       "frameworks": {
         "net7.0": {
@@ -4038,7 +4040,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SYNM.Infrastructure
-build_property.ProjectDir = F:\Projects\SYNM\src\SYNM.Infrastructure\
+build_property.ProjectDir = D:\Data\My Code\Open Sourse\CleanArchitectureWithCQRS\src\SYNM.Infrastructure\
