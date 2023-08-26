@@ -1,7 +1,4 @@
-﻿using Infrastructure.Data;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Infrastructure
+﻿namespace Infrastructure
 {
     public static class ConfigureServices
     {

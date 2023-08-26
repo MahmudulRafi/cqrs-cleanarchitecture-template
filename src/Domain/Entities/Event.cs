@@ -4,6 +4,8 @@
     {
         public string Name { get; set; } = string.Empty;
         public DateTime Schedule { get; set; } = DateTime.Now;
+        public Guid OrganizationId { get; set; } = default;
+        public Guid OrganizedByUserId { get; set; } = default;
         public string Description { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public int SeatAllocation { get; set; } = default;

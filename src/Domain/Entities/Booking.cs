@@ -5,5 +5,6 @@
         public Guid UserId { get; set; } = default;
         public Guid EventId { get; set; } = default;
         public bool IsConfirmed { get; set; } = default;
+        public bool IsCanceledByUser { get; set; } = default;
     }
 }
