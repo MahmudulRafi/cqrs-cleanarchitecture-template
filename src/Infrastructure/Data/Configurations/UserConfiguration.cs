@@ -4,7 +4,9 @@
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasData(new User { }, new User { });
+            builder.HasData(
+                new User { Name = "Mahmudul Rafi", Email = "test@gmail.com", Phone = "0121231232" }
+                );
         }
     }
 }
