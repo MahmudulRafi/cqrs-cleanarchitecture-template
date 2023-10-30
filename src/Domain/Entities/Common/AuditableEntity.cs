@@ -1,10 +1,10 @@
 ﻿namespace Domain.Common
 {
-    public class BaseAuditableEntity : BaseEntity
+    public class AuditableEntity
     {
-        public Guid AddedBy { get; set; } = default;
+        public Guid AddedBy { get; set; } = Guid.NewGuid();
         public DateTime AddedDateTime { get; set; } = DateTime.UtcNow;
-        public Guid UpdateBy { get; set; } = default;
+        public Guid UpdateBy { get; set; } = Guid.NewGuid();
         public DateTime UpdateDateTime { get; set; } = DateTime.UtcNow;
     }
 }
