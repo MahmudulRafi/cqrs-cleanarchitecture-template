@@ -1,4 +1,4 @@
-﻿namespace Application.Services.Common.Interfaces
+﻿namespace Application.Services.Interfaces
 {
     public interface IHttpClientWrapperService
     {

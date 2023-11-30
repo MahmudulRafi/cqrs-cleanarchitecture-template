@@ -1,4 +1,4 @@
-﻿using Application.Services.Common.Interfaces;
+﻿using Application.Services.Interfaces;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;

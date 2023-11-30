@@ -1,3 +1,5 @@
+using Application;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +10,9 @@ builder.Services.AddSwaggerGen();
 
 // Configure services for reference assemblies
 
-builder.Services.AddInfrastructure();
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructure();
 
 var app = builder.Build();
 

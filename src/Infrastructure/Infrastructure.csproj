@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Common\" />
-  </ItemGroup>
-
 </Project>
