@@ -1,4 +1,4 @@
-﻿using Application.Services.Interfaces;
+﻿using Application.Services.Users;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +14,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("/Users")]
-        public async Task<List<User>> Index()
+        public async Task<List<User>> GetUsers()
         {
-            return await _userService.GetUsersAsync();  
+            return await _userService.GetUsersAsync();
+        }
+
+        [HttpGet("/User/{id}")]
+        public async Task<User> GetUserById(Guid id)
+        {
+            return await _userService.GetByIdAsync(id);
         }
     }
 }

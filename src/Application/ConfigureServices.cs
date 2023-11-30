@@ -1,5 +1,7 @@
-﻿using Application.Services;
-using Application.Services.Interfaces;
+﻿using Application.Services.Bookings;
+using Application.Services.Events;
+using Application.Services.Organizations;
+using Application.Services.Users;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
