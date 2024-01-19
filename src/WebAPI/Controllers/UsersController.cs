@@ -1,4 +1,5 @@
-﻿using Application.Services.Users;
+﻿using Application.DTOs.Response;
+using Application.Services.Users;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,15 +15,31 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("/Users")]
-        public async Task<List<User>> GetUsers()
+        public async Task<ServiceResponse> GetUsers()
         {
-            return await _userService.GetUsersAsync();
+            try
+            {
+                List<User> users = await _userService.GetUsersAsync();
+                return ServiceResponseHandler.HandleSuccess(users);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResponseHandler.HandleError(ex.Message);
+            }
         }
 
         [HttpGet("/User/{id}")]
-        public async Task<User> GetUserById(Guid id)
+        public async Task<ServiceResponse> GetUserById(Guid id)
         {
-            return await _userService.GetByIdAsync(id);
+            try
+            {
+                User user = await _userService.GetByIdAsync(id);
+                return ServiceResponseHandler.HandleSuccess(user);
+            }
+            catch (Exception ex)
+            {
+                return ServiceResponseHandler.HandleError(ex.Message);
+            }
         }
     }
 }
