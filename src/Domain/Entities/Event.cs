@@ -2,13 +2,14 @@
 {
     public class Event : BaseEntity
     {
-        public string Name { get; set; } = string.Empty;
-        public DateTime Schedule { get; set; } = DateTime.Now;
-        public Guid OrganizationId { get; set; } = Guid.NewGuid();
-        public Guid? OrganizedByUserId { get; set; } = Guid.NewGuid();
+        public string Title { get; set; } = string.Empty;
+        public DateTime EventStartDate { get; set; } = DateTime.Now;
+        public DateTime EventEndDate { get; set; } = DateTime.Now;
+        public string OrganizationId { get; set; } = string.Empty;
+        public string OrganizedByUserId { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public int SeatAllocation { get; set; } = default;
-        public bool IsAvailable { get; set; } = default;
+        public bool IsAvailableForRegistraton { get; set; } = default;
     }
 }

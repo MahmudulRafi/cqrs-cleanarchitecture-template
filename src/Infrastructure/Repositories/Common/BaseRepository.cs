@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories.Common
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(string id)
         {
             return await _dbSet.FindAsync(id);
         }

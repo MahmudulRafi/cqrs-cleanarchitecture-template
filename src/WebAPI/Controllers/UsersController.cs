@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Response;
-using Application.Services.Users;
-using Domain.Entities;
+﻿using Application.Common.DTOs.Response;
+using Application.Users.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -8,38 +8,22 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        private readonly IMediator _mediator;
+        public UsersController(IMediator mediator)
         {
-            _userService = userService;
+            _mediator = mediator;
         }
 
         [HttpGet("/Users")]
-        public async Task<ServiceResponse> GetUsers()
+        public async Task<ServiceResponse> GetUsers([FromQuery] GetAllUsersQuery query)
         {
-            try
-            {
-                List<User> users = await _userService.GetUsersAsync();
-                return ServiceResponseHandler.HandleSuccess(users);
-            }
-            catch (Exception ex)
-            {
-                return ServiceResponseHandler.HandleError(ex.Message);
-            }
+            return await _mediator.Send(query);
         }
 
-        [HttpGet("/User/{id}")]
-        public async Task<ServiceResponse> GetUserById(Guid id)
+        [HttpGet("/User")]
+        public async Task<ServiceResponse> GetUserById([FromQuery] GetUserByIdQuery query)
         {
-            try
-            {
-                User user = await _userService.GetByIdAsync(id);
-                return ServiceResponseHandler.HandleSuccess(user);
-            }
-            catch (Exception ex)
-            {
-                return ServiceResponseHandler.HandleError(ex.Message);
-            }
+            return await _mediator.Send(query);
         }
     }
 }
