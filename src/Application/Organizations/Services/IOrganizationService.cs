@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Application.Services.Organizations
+namespace Application.Organizations.Services
 {
     public interface IOrganizationService
     {

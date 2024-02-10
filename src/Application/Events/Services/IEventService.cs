@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Application.Services.Events
+namespace Application.Events.Services
 {
     public interface IEventService
     {

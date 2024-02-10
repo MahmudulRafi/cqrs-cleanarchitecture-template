@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories.Common;
 
-namespace Application.Services.Organizations
+namespace Application.Organizations.Services
 {
     public class OrganizationService : IOrganizationService
     {

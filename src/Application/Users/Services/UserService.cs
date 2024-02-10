@@ -2,7 +2,7 @@
 using Domain.Repositories;
 using Domain.Repositories.Common;
 
-namespace Application.Services.Users
+namespace Application.Users.Services
 {
     public class UserService : IUserService
     {
@@ -13,9 +13,9 @@ namespace Application.Services.Users
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<User> GetByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(string id)
         {
-            return await _unitOfWork.Users.GetByIdAsync(id);    
+            return await _unitOfWork.Users.GetByIdAsync(id);
         }
 
         public async Task<List<User>> GetUsersAsync()

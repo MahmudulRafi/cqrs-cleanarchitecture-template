@@ -1,11 +1,11 @@
-﻿namespace Application.DTOs.Response
+﻿namespace Application.Common.DTOs.Response
 {
     public static class ServiceResponseHandler
     {
         public static ServiceResponse HandleSuccess()
         {
             ServiceResponse response = new();
-            response.SetSuccess();  
+            response.SetSuccess();
             return response;
         }
 
@@ -20,6 +20,13 @@
         {
             ServiceResponse response = new();
             response.SetError(errorMessage);
+            return response;
+        }
+
+        public static ServiceResponse HandleValidationError(string errorMessage)
+        {
+            ServiceResponse response = new();
+            response.SetValidationError(errorMessage);
             return response;
         }
     }

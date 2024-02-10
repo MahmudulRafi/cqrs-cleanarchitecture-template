@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories.Common;
 
-namespace Application.Services.Events
+namespace Application.Events.Services
 {
     public class EventService : IEventService
     {

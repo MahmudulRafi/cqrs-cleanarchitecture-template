@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories.Common;
 
-namespace Application.Services.Bookings
+namespace Application.Bookings.Services
 {
     public class BookingService : IBookingService
     {

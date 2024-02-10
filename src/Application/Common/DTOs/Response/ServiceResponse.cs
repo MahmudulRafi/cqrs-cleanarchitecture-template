@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.Response
+namespace Application.Common.DTOs.Response
 {
     public class ServiceResponse
     {
         public dynamic? Data { get; set; }
         public bool? IsSuccessful { get; set; }
         public string? ErrorMessage { get; set; }
+        public int? StatusCode { get; set; }
 
         public void SetSuccess()
         {
@@ -21,12 +22,21 @@ namespace Application.DTOs.Response
         {
             Data = data;
             IsSuccessful = true;
+            StatusCode = 200;   
         }
 
         public void SetError(string errorMessage)
         {
             ErrorMessage = errorMessage;
             IsSuccessful = false;
+            StatusCode = 500;
+        }
+
+        public void SetValidationError(string errorMessage)
+        {
+            ErrorMessage = errorMessage;
+            IsSuccessful = false;
+            StatusCode = 400;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace Application.Services.Common
+namespace Application.Common.Services
 {
     public class HttpClientWrapperService : IHttpClientWrapperService
     {
