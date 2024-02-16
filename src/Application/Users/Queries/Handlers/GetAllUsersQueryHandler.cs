@@ -22,7 +22,7 @@ namespace Application.Users.Queries.Handlers
             }
             catch (Exception ex)
             {
-                return ServiceResponseHandler.HandleError(ex.Message);
+                return ServiceResponseHandler.HandleError(new List<string> { ex.Message });
             }
         }
     }

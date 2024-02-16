@@ -13,7 +13,7 @@ namespace Application.Users.Queries.Handlers
         private readonly GetUserByIdQueryValidator _validator;
         public GetUserByIdQueryHandler(IUserService userService, GetUserByIdQueryValidator validator)
         {
-            _userService = userService; 
+            _userService = userService;
             _validator = validator;
         }
 
@@ -22,10 +22,10 @@ namespace Application.Users.Queries.Handlers
             try
             {
                 ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
-                
+
                 if (!validationResult.IsValid)
                 {
-                    return ServiceResponseHandler.HandleValidationError(string.Join(",",validationResult.Errors));
+                    return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
                 }
 
                 User user = await _userService.GetByIdAsync(request.Id);
@@ -33,7 +33,7 @@ namespace Application.Users.Queries.Handlers
             }
             catch (Exception ex)
             {
-                return ServiceResponseHandler.HandleError(ex.Message);
+                return ServiceResponseHandler.HandleError(new List<string>() { ex.Message });
             }
         }
     }

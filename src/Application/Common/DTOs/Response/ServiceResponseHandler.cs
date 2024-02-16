@@ -1,4 +1,6 @@
-﻿namespace Application.Common.DTOs.Response
+﻿using FluentValidation.Results;
+
+namespace Application.Common.DTOs.Response
 {
     public static class ServiceResponseHandler
     {
@@ -16,17 +18,26 @@
             return response;
         }
 
-        public static ServiceResponse HandleError(string errorMessage)
+        public static ServiceResponse HandleError(List<string> errorMessages)
         {
             ServiceResponse response = new();
-            response.SetError(errorMessage);
+            response.SetError(errorMessages);
             return response;
         }
 
-        public static ServiceResponse HandleValidationError(string errorMessage)
+        public static ServiceResponse HandleValidationError(List<ValidationFailure> validationFailures)
         {
+            List<string> errorMessages = new();
+            if (validationFailures.Count > 0)
+            {
+                foreach (ValidationFailure failure in validationFailures)
+                {
+                    errorMessages.Add(failure.ErrorMessage);
+                }
+            }
+
             ServiceResponse response = new();
-            response.SetValidationError(errorMessage);
+            response.SetValidationError(errorMessages);
             return response;
         }
     }

@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace Application.Common.DTOs.Response
 {
     public class ServiceResponse
     {
+        public ServiceResponse()
+        {
+            ErrorMessages = new List<string>();
+        }
+
         public dynamic? Data { get; set; }
         public bool? IsSuccessful { get; set; }
-        public string? ErrorMessage { get; set; }
-        public int? StatusCode { get; set; }
+        public List<string> ErrorMessages { get; set; }
+        public HttpStatusCode StatusCode { get; set; }
 
         public void SetSuccess()
         {
@@ -22,21 +23,21 @@ namespace Application.Common.DTOs.Response
         {
             Data = data;
             IsSuccessful = true;
-            StatusCode = 200;   
+            StatusCode = HttpStatusCode.OK;
         }
 
-        public void SetError(string errorMessage)
+        public void SetError(List<string> errorMessages)
         {
-            ErrorMessage = errorMessage;
+            ErrorMessages = errorMessages;
             IsSuccessful = false;
-            StatusCode = 500;
+            StatusCode = HttpStatusCode.InternalServerError;
         }
 
-        public void SetValidationError(string errorMessage)
+        public void SetValidationError(List<string> errorMessages)
         {
-            ErrorMessage = errorMessage;
+            ErrorMessages = errorMessages;
             IsSuccessful = false;
-            StatusCode = 400;
+            StatusCode = HttpStatusCode.BadRequest;
         }
     }
 }
