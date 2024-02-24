@@ -19,7 +19,7 @@ namespace Application
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
 
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUsersQuery).GetTypeInfo().Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUserQuery).GetTypeInfo().Assembly));
             services.AddValidatorsFromAssemblyContaining<GetUserByIdQueryValidator>(includeInternalTypes: true);
 
             return services;

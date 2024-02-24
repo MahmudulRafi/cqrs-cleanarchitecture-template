@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("/Users")]
-        public async Task<ServiceResponse> GetUsers([FromQuery] GetAllUsersQuery query)
+        public async Task<ServiceResponse> GetUsers([FromQuery] GetAllUserQuery query)
         {
             return await _mediator.Send(query);
         }

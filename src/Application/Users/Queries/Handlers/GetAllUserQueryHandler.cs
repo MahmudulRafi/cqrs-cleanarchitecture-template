@@ -5,15 +5,15 @@ using MediatR;
 
 namespace Application.Users.Queries.Handlers
 {
-    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, ServiceResponse>
+    public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, ServiceResponse>
     {
         private readonly IUserService _userService;
-        public GetAllUsersQueryHandler(IUserService userService)
+        public GetAllUserQueryHandler(IUserService userService)
         {
             _userService = userService;
         }
 
-        public async Task<ServiceResponse> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<ServiceResponse> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
         {
             try
             {

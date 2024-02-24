@@ -11,6 +11,11 @@ namespace Application.Organizations.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<Organization> GetOrganizationByIdAsync(string id)
+        {
+            return await _unitOfWork.Organizations.GetByIdAsync(id);
+        }
+
         public async Task<List<Organization>> GetOrganizationsAsync()
         {
             return await _unitOfWork.Organizations.GetAllAsync();

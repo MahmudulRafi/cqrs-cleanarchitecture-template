@@ -9,6 +9,7 @@
         public DbSet<Event> Events { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Organization> Organizations { get; set; }  
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,6 +18,7 @@
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
+            modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
         }
     }
 }
