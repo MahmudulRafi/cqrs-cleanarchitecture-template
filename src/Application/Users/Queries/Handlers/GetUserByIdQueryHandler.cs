@@ -29,6 +29,7 @@ namespace Application.Users.Queries.Handlers
                 }
 
                 User user = await _userService.GetByIdAsync(request.Id);
+
                 return ServiceResponseHandler.HandleSuccess(user);
             }
             catch (Exception ex)

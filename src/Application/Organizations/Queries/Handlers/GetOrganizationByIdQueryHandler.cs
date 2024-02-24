@@ -2,6 +2,7 @@
 using Application.Organizations.Queries.Validators;
 using Application.Organizations.Services;
 using Domain.Entities;
+using FluentValidation.Results;
 using MediatR;
 
 namespace Application.Organizations.Queries.Handlers
@@ -20,7 +21,7 @@ namespace Application.Organizations.Queries.Handlers
         {
             try
             {
-                var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+                ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
                 if (!validationResult.IsValid)
                 {
@@ -28,6 +29,7 @@ namespace Application.Organizations.Queries.Handlers
                 }
 
                 Organization organization = await _organizationService.GetOrganizationByIdAsync(request.Id);
+
                 return ServiceResponseHandler.HandleSuccess(organization);
             }
             catch (Exception ex)

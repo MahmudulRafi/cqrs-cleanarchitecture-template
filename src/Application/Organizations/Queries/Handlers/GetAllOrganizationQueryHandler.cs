@@ -19,6 +19,7 @@ namespace Application.Organizations.Queries.Handlers
             try
             {
                 List<Organization> organizations = await _organizationService.GetOrganizationsAsync();
+
                 return ServiceResponseHandler.HandleSuccess(organizations);
             }
             catch (Exception ex)

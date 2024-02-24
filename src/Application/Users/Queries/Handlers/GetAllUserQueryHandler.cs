@@ -18,6 +18,7 @@ namespace Application.Users.Queries.Handlers
             try
             {
                 List<User> users = await _userService.GetUsersAsync();
+
                 return ServiceResponseHandler.HandleSuccess(users);
             }
             catch (Exception ex)
