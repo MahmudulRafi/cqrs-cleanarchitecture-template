@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Domain.Repositories;
 using Domain.Repositories.Common;
 
 namespace Application.Users.Services
@@ -13,14 +12,14 @@ namespace Application.Users.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<User> GetByIdAsync(string id)
+        public async Task<User> GetByIdAsync(string id, CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Users.GetByIdAsync(id);
+            return await _unitOfWork.Users.GetByIdAsync(id, cancellationToken);
         }
 
-        public async Task<List<User>> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync(CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Users.GetAllAsync();
+            return await _unitOfWork.Users.GetAllAsync(cancellationToken);
         }
     }
 }

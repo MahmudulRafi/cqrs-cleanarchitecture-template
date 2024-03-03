@@ -1,11 +1,11 @@
-﻿using Application.Common.DTOs.Response;
+﻿using Application.Abstractions.Messaging;
+using Application.Common.DTOs.Response;
 using Application.Organizations.Services;
 using Domain.Entities;
-using MediatR;
 
-namespace Application.Organizations.Queries.Handlers
+namespace Application.Organizations.Queries.GetAllOrganization
 {
-    public class GetAllOrganizationQueryHandler : IRequestHandler<GetAllOrganizationQuery, ServiceResponse>
+    public class GetAllOrganizationQueryHandler : IQueryHandler<GetAllOrganizationQuery, ServiceResponse>
     {
         private readonly IOrganizationService _organizationService;
 
@@ -18,7 +18,7 @@ namespace Application.Organizations.Queries.Handlers
         {
             try
             {
-                List<Organization> organizations = await _organizationService.GetOrganizationsAsync();
+                List<Organization> organizations = await _organizationService.GetOrganizationsAsync(cancellationToken);
 
                 return ServiceResponseHandler.HandleSuccess(organizations);
             }

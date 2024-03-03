@@ -1,8 +1,8 @@
 ﻿using Application.Bookings.Services;
 using Application.Events.Services;
 using Application.Organizations.Services;
-using Application.Users.Queries;
-using Application.Users.Queries.Validators;
+using Application.Users.Queries.GetAllUser;
+using Application.Users.Queries.GetUserById;
 using Application.Users.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;

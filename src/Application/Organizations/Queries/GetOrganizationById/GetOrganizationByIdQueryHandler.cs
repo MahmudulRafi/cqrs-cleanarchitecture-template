@@ -1,17 +1,17 @@
-﻿using Application.Common.DTOs.Response;
-using Application.Organizations.Queries.Validators;
+﻿using Application.Abstractions.Messaging;
+using Application.Common.DTOs.Response;
 using Application.Organizations.Services;
 using Domain.Entities;
+using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
 
-namespace Application.Organizations.Queries.Handlers
+namespace Application.Organizations.Queries.GetOrganizationById
 {
-    public class GetOrganizationByIdQueryHandler : IRequestHandler<GetOrganizationByIdQuery, ServiceResponse>
+    public class GetOrganizationByIdQueryHandler : IQueryHandler<GetOrganizationByIdQuery, ServiceResponse>
     {
         private readonly IOrganizationService _organizationService;
-        private readonly GetOrganizationByIdQueryValidator _validator;
-        public GetOrganizationByIdQueryHandler(IOrganizationService organizationService, GetOrganizationByIdQueryValidator validator)
+        private readonly IValidator<GetOrganizationByIdQuery> _validator;
+        public GetOrganizationByIdQueryHandler(IOrganizationService organizationService, IValidator<GetOrganizationByIdQuery> validator)
         {
             _organizationService = organizationService;
             _validator = validator;
@@ -28,7 +28,7 @@ namespace Application.Organizations.Queries.Handlers
                     return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
                 }
 
-                Organization organization = await _organizationService.GetOrganizationByIdAsync(request.Id);
+                Organization organization = await _organizationService.GetOrganizationByIdAsync(request.Id, cancellationToken);
 
                 return ServiceResponseHandler.HandleSuccess(organization);
             }

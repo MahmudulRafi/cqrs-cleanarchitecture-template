@@ -11,14 +11,14 @@ namespace Application.Organizations.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Organization> GetOrganizationByIdAsync(string id)
+        public async Task<Organization> GetOrganizationByIdAsync(string id, CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Organizations.GetByIdAsync(id);
+            return await _unitOfWork.Organizations.GetByIdAsync(id, cancellationToken);
         }
 
-        public async Task<List<Organization>> GetOrganizationsAsync()
+        public async Task<List<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Organizations.GetAllAsync();
+            return await _unitOfWork.Organizations.GetAllAsync(cancellationToken);
         }
     }
 }

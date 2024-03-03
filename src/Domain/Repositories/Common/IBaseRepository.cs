@@ -2,7 +2,7 @@
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
-        Task<List<T>> GetAllAsync();
-        Task<T> GetByIdAsync(string id);
+        Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<T> GetByIdAsync(string id, CancellationToken cancellationToken = default);
     }
 }
