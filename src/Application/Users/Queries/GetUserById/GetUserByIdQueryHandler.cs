@@ -1,17 +1,17 @@
-﻿using Application.Common.DTOs.Response;
-using Application.Users.Queries.Validators;
+﻿using Application.Abstractions.Messaging;
+using Application.Common.DTOs.Response;
 using Application.Users.Services;
 using Domain.Entities;
+using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
 
-namespace Application.Users.Queries.Handlers
+namespace Application.Users.Queries.GetUserById
 {
-    public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, ServiceResponse>
+    public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, ServiceResponse>
     {
         private readonly IUserService _userService;
-        private readonly GetUserByIdQueryValidator _validator;
-        public GetUserByIdQueryHandler(IUserService userService, GetUserByIdQueryValidator validator)
+        private readonly IValidator<GetUserByIdQuery> _validator;
+        public GetUserByIdQueryHandler(IUserService userService, IValidator<GetUserByIdQuery> validator)
         {
             _userService = userService;
             _validator = validator;
@@ -28,7 +28,7 @@ namespace Application.Users.Queries.Handlers
                     return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
                 }
 
-                User user = await _userService.GetByIdAsync(request.Id);
+                User user = await _userService.GetByIdAsync(request.Id, cancellationToken);
 
                 return ServiceResponseHandler.HandleSuccess(user);
             }

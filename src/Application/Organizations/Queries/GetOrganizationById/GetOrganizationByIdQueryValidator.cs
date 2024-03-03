@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Application.Organizations.Queries.Validators
+namespace Application.Organizations.Queries.GetOrganizationById
 {
     public class GetOrganizationByIdQueryValidator : AbstractValidator<GetOrganizationByIdQuery>
     {
