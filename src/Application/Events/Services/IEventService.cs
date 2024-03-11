@@ -4,6 +4,6 @@ namespace Application.Events.Services
 {
     public interface IEventService
     {
-        Task<List<Event>> GetEventsAsync();
+        Task<List<Event>> GetEventsAsync(CancellationToken cancellationToken = default);
     }
 }

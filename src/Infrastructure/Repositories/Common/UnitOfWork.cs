@@ -25,9 +25,9 @@ namespace Infrastructure.Repositories.Common
             Context.Dispose();
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            return await Context.SaveChangesAsync();
+            return await Context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -29,7 +29,8 @@ namespace Application.Users.Queries.GetAllUser
             }
             catch (Exception ex)
             {
-                return ServiceResponseHandler.HandleError(new List<string> { ex.Message });
+                //return ServiceResponseHandler.HandleError(new List<string> { ex.Message });
+                throw;
             }
         }
     }

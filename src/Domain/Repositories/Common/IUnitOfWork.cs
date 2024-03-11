@@ -6,5 +6,6 @@
         IBookingRepository Bookings { get; }
         IEventRepository Events { get; }
         IOrganizationRepository Organizations { get; }
+        Task<bool> SaveChangesAsync();
     }
 }
