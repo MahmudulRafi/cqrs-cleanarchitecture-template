@@ -10,9 +10,9 @@ namespace Application.Events.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public Task<List<Event>> GetEventsAsync()
+        public Task<List<Event>> GetEventsAsync(CancellationToken cancellationToken = default)
         {
-            return _unitOfWork.Events.GetAllAsync();
+            return _unitOfWork.Events.GetAllAsync(cancellationToken);
         }
     }
 }
