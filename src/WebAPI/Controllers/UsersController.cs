@@ -1,7 +1,7 @@
 ﻿using Application.Common.DTOs.Response;
-using Application.Users.Commands.CreateUser;
-using Application.Users.Queries.GetAllUser;
-using Application.Users.Queries.GetUserById;
+using Application.Features.Users.Commands.CreateUser;
+using Application.Features.Users.Queries.GetAllUser;
+using Application.Features.Users.Queries.GetUserById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

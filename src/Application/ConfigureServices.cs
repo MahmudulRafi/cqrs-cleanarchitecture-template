@@ -1,10 +1,10 @@
-﻿using Application.Bookings.Services;
-using Application.Events.Services;
+﻿using Application.Features.Bookings.Services;
+using Application.Features.Events.Services;
+using Application.Features.Organizations.Services;
+using Application.Features.Users.Queries.GetAllUser;
+using Application.Features.Users.Queries.GetUserById;
+using Application.Features.Users.Services;
 using Application.Middlewares;
-using Application.Organizations.Services;
-using Application.Users.Queries.GetAllUser;
-using Application.Users.Queries.GetUserById;
-using Application.Users.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
