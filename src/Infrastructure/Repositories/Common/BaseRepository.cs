@@ -1,4 +1,4 @@
-﻿using Domain.Common;
+﻿using Domain.Entities.Common;
 using Domain.Repositories.Common;
 using System.Linq.Expressions;
 

@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Messaging;
-using Application.Common.DTOs.Response;
+using Application.DTOs.Responses;
 using Application.Features.Users.Services;
 using Domain.Entities;
 using Microsoft.Extensions.Logging;

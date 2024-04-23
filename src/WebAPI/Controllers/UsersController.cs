@@ -1,4 +1,4 @@
-﻿using Application.Common.DTOs.Response;
+﻿using Application.DTOs.Responses;
 using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Queries.GetAllUser;
 using Application.Features.Users.Queries.GetUserById;

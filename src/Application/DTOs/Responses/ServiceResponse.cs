@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using Domain.Constants;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
 
-namespace Application.Common.DTOs.Response
+namespace Application.DTOs.Responses
 {
+    [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public class ServiceResponse
     {
         public ServiceResponse()

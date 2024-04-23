@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Application.Common.DTOs.Response
+namespace Application.DTOs.Responses
 {
     public static class ServiceResponseHandler
     {

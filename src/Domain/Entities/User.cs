@@ -1,5 +1,10 @@
-﻿namespace Domain.Entities
+﻿using Domain.Constants;
+using Domain.Entities.Common;
+using System.Diagnostics.CodeAnalysis;
+
+namespace Domain.Entities
 {
+    [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public class User : BaseEntity
     {
         public string Name { get; set; } = string.Empty;

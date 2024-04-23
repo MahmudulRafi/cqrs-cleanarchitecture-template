@@ -1,6 +1,7 @@
 using Application;
 using Application.Middlewares;
 using Serilog;
+using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,8 @@ builder.Host.UseSerilog((context, configuration) =>
 
 builder.Services
     .AddApplicationServices()
-    .AddInfrastructure();
+    .AddInfrastructure()
+    .AddApplicationOptions(builder.Configuration);
 
 var app = builder.Build();
 

@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Messaging;
-using Application.Common.DTOs.Response;
+using Application.DTOs.Responses;
 
 namespace Application.Features.Users.Commands.CreateUser
 {

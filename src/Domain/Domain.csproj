@@ -7,18 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Enums\**" />
     <Compile Remove="Events\**" />
     <Compile Remove="Exceptions\**" />
     <Compile Remove="ValueObjects\**" />
-    <EmbeddedResource Remove="Enums\**" />
     <EmbeddedResource Remove="Events\**" />
     <EmbeddedResource Remove="Exceptions\**" />
     <EmbeddedResource Remove="ValueObjects\**" />
-    <None Remove="Enums\**" />
     <None Remove="Events\**" />
     <None Remove="Exceptions\**" />
     <None Remove="ValueObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

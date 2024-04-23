@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Domain.Entities.Common;
+using System.Linq.Expressions;
 
 namespace Domain.Repositories.Common
 {

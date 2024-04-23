@@ -26,8 +26,7 @@ namespace Application.Features.Users.Services
 
         public async Task<List<User>> GetUsersAsync(CancellationToken cancellationToken = default)
         {
-            //return await _unitOfWork.Users.GetAllAsync(cancellationToken);
-            throw new NotImplementedException();
+            return await _unitOfWork.Users.GetAllAsync(cancellationToken);
         }
 
         public async Task<bool> UserEmailExists(string email, CancellationToken cancellationToken = default)
