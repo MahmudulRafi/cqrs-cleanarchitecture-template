@@ -1,11 +1,11 @@
-﻿using Application.Common.Exceptions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
 using Domain.Constants;
+using Application.Exceptions;
 
 namespace Application.Middlewares
 {

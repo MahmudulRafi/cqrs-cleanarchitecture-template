@@ -4,11 +4,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace Domain.Entities.Common
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public class AuditableEntity
+    public class AuditableEntity : IAuditableEntity
     {
-        public Guid AddedBy { get; set; }
+        public string AddedBy { get; set; } = string.Empty;
         public DateTime AddedDateTime { get; set; }
-        public Guid UpdateBy { get; set; }
+        public string UpdateBy { get; set; } = string.Empty;
         public DateTime UpdateDateTime { get; set; }
     }
 }

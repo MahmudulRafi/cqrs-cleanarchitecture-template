@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Common;
+﻿using Domain.Models;
 using Domain.Repositories.Common;
 using System.Linq.Expressions;
 
@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories.Common
 
         public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbSet.AsNoTracking().ToListAsync(cancellationToken);
+            return await _dbSet.AsNoTracking().AsQueryable().ToListAsync(cancellationToken);
         }
 
         public async Task<T> GetByIdAsync(string id, CancellationToken cancellationToken = default)
@@ -29,10 +29,19 @@ namespace Infrastructure.Repositories.Common
             return await _dbSet.FindAsync(id, cancellationToken);
         }
 
-        public async Task<T> InsertAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _dbSet.AddAsync(entity, cancellationToken);
             return entity;
+        }
+
+        public async Task<PaginatedResponse<List<T>>> GetPaginatedResponseAsync(int PageNumber, int PageSize, CancellationToken cancellationToken = default)
+        {
+            List<T> paginatedResponse = await _dbSet.Skip((PageNumber - 1) * PageSize).Take(PageSize).AsNoTracking().AsQueryable().ToListAsync(cancellationToken);
+            
+            int totalItemCount = _dbSet.AsNoTracking().AsQueryable().Count();
+
+            return new PaginatedResponse<List<T>>() { Data = paginatedResponse, TotalCount = totalItemCount };
         }
     }
 }

@@ -2,8 +2,9 @@
 using Application.DTOs.Responses;
 using Application.Features.Organizations.Services;
 using Domain.Entities;
+using Domain.Models;
 
-namespace Application.Features.Organizations.Queries.GetAllOrganization
+namespace Application.Features.Organizations.Queries
 {
     public class GetAllOrganizationQueryHandler : IQueryHandler<GetAllOrganizationQuery, ServiceResponse>
     {
@@ -16,7 +17,7 @@ namespace Application.Features.Organizations.Queries.GetAllOrganization
 
         public async Task<ServiceResponse> Handle(GetAllOrganizationQuery request, CancellationToken cancellationToken)
         {
-            List<Organization> organizations = await _organizationService.GetOrganizationsAsync(cancellationToken);
+            PaginatedResponse<List<Organization>> organizations = await _organizationService.GetOrganizationsAsync(request.PageNumber, request.PageSize, cancellationToken);
 
             return ServiceResponseHandler.HandleSuccess(organizations);
         }

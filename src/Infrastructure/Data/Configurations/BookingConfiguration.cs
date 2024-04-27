@@ -4,8 +4,7 @@
     {
         public void Configure(EntityTypeBuilder<Booking> builder)
         {
-            builder.HasData(new Booking { }, new Booking { });
-            builder.HasData(new Booking { }, new Booking { });
+
         }
     }
 }

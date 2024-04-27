@@ -27,7 +27,7 @@ namespace Application.Features.Users.Commands.CreateUser
                 return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
             }
 
-            User user = new() { Name = request.Name, Email = request.Email, Phone = request.Phone };
+            User user = new() { FirstName = request.Name, Email = request.Email, LastName = request.Phone };
 
             bool reponse = await _userService.CreateUserAsync(user, cancellationToken);
 

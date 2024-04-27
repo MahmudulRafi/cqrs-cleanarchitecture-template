@@ -1,5 +1,6 @@
 ﻿using Application.Features.Bookings.Services;
 using Application.Features.Events.Services;
+using Application.Features.Organizations;
 using Application.Features.Organizations.Services;
 using Application.Features.Users.Queries.GetAllUser;
 using Application.Features.Users.Queries.GetUserById;
@@ -27,6 +28,8 @@ namespace Application
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUserQuery).GetTypeInfo().Assembly));
             services.AddValidatorsFromAssemblyContaining<GetUserByIdQueryValidator>(includeInternalTypes: true);
+
+            services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
 
             return services;
         }

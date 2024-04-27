@@ -28,6 +28,7 @@ namespace Application.DTOs.Responses
         public static ServiceResponse HandleValidationError(List<ValidationFailure> validationFailures)
         {
             List<string> errorMessages = new();
+
             if (validationFailures.Count > 0)
             {
                 foreach (ValidationFailure failure in validationFailures)

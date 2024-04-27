@@ -3,7 +3,7 @@ using Domain.Repositories.Common;
 
 namespace Infrastructure.Repositories.Common
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         private AppDbContext Context { get; set; }
         public IUserRepository Users { get; private set; }

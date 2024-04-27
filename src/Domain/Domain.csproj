@@ -19,7 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\Common\AuditableEntity.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.18" />
   </ItemGroup>
 
 </Project>
