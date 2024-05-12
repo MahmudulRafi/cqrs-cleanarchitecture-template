@@ -2,7 +2,7 @@
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Features.Organizations
+namespace Application.Utilities.Mappers
 {
     public class OrganizationMappingProfiles : Profile
     {

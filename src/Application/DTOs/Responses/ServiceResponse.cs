@@ -12,7 +12,7 @@ namespace Application.DTOs.Responses
             ErrorMessages = new List<string>();
         }
 
-        public dynamic? Data { get; set; }
+        public dynamic? Response { get; set; }
         public bool? IsSuccessful { get; set; }
         public List<string> ErrorMessages { get; set; }
         public HttpStatusCode StatusCode { get; set; }
@@ -24,7 +24,7 @@ namespace Application.DTOs.Responses
 
         public void SetSuccess(dynamic data)
         {
-            Data = data;
+            Response = data;
             IsSuccessful = true;
             StatusCode = HttpStatusCode.OK;
         }

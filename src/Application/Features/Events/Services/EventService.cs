@@ -12,7 +12,7 @@ namespace Application.Features.Events.Services
         }
         public Task<List<Event>> GetEventsAsync(CancellationToken cancellationToken = default)
         {
-            return _unitOfWork.Events.GetAllAsync(cancellationToken);
+            return _unitOfWork.Events.GetItemsAsync(cancellationToken);
         }
     }
 }

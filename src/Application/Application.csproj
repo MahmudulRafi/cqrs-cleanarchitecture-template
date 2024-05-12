@@ -24,7 +24,6 @@
     <Folder Include="DTOs\Requests\" />
     <Folder Include="Extensions\" />
     <Folder Include="Attributes\" />
-    <Folder Include="Utilities\Mappers\" />
   </ItemGroup>
 
 </Project>

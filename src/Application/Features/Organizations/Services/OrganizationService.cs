@@ -1,6 +1,9 @@
-﻿using Domain.Entities;
-using Domain.Models;
+﻿using Application.DTOs.Responses;
+using Domain.Entities;
+using Domain.Models.Requests;
+using Domain.Models.Responses;
 using Domain.Repositories.Common;
+using System.Linq.Expressions;
 
 namespace Application.Features.Organizations.Services
 {
@@ -25,12 +28,24 @@ namespace Application.Features.Organizations.Services
 
         public async Task<List<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Organizations.GetAllAsync(cancellationToken);
+            return await _unitOfWork.Organizations.GetItemsAsync(cancellationToken);
         }
 
         public async Task<PaginatedResponse<List<Organization>>> GetOrganizationsAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
-            return await _unitOfWork.Organizations.GetPaginatedResponseAsync(pageNumber, pageSize, cancellationToken);
+            var filtedRequest = new FilteredItemRequest<Organization>()
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                OrderBy = org => org.OrderBy(a => a.CreatedDateTime),
+                Filter = org => !org.IsDeleted, 
+                Includes = new List<Expression<Func<Organization, object>>>
+                {
+                    a => a.User ?? new User()
+                }
+            };
+
+            return await _unitOfWork.Organizations.GetItemsAsync(filtedRequest, cancellationToken);
         }
 
         public async Task<bool> OrganizationNameExistsAsync(string name, CancellationToken cancellationToken = default)

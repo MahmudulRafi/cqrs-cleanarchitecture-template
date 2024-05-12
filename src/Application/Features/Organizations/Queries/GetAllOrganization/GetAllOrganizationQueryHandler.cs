@@ -2,7 +2,7 @@
 using Application.DTOs.Responses;
 using Application.Features.Organizations.Services;
 using Domain.Entities;
-using Domain.Models;
+using Domain.Models.Responses;
 
 namespace Application.Features.Organizations.Queries
 {

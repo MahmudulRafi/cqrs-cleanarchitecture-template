@@ -20,7 +20,7 @@ namespace Application.Features.Users.Queries.GetAllUser
         {
             List<User> users = await _userService.GetUsersAsync(cancellationToken);
 
-            _logger.LogInformation("{response}", users);
+            _logger.LogInformation("{Response}", users);
 
             return ServiceResponseHandler.HandleSuccess(users);
         }

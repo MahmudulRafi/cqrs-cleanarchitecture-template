@@ -14,7 +14,7 @@ namespace Application.Features.Bookings.Services
 
         public async Task<List<Booking>> GetBookingsAsync()
         {
-            return await _unitOfWork.Bookings.GetAllAsync();
+            return await _unitOfWork.Bookings.GetItemsAsync();
         }
     }
 }

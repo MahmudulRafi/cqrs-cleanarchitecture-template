@@ -2,13 +2,15 @@
 using Application.DTOs.Responses;
 using Application.Features.Organizations.Commands;
 using Application.Features.Organizations.Queries;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("/v1/Organization/")]
+    [ApiVersion(1)]
+    [Route("api/v{version:apiVersion}/Organizations")]
     public sealed class OrganizationsController : ControllerBase
     {
         private readonly ISender _sender;
@@ -17,19 +19,21 @@ namespace WebAPI.Controllers
             _sender = sender;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<ServiceResponse> GetOrganizations([FromQuery] GetAllOrganizationQuery query, CancellationToken cancellationToken)
         {
             return await _sender.Send(query, cancellationToken);
         }
 
-        [HttpGet("GetById")]
-        public async Task<ServiceResponse> GetOrganizationById([FromQuery] GetOrganizationByIdQuery query, CancellationToken cancellationToken)
+        [HttpGet("{organizationId}")]
+        public async Task<ServiceResponse> GetOrganizationById(string organizationId, CancellationToken cancellationToken)
         {
+            GetOrganizationByIdQuery query = new() { Id = organizationId };
+
             return await _sender.Send(query, cancellationToken);
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<ServiceResponse> CreateOrganization([FromBody] CreateOrganizationCommand command, CancellationToken cancellationToken)
         {
             return await _sender.Send(command, cancellationToken);

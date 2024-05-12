@@ -1,4 +1,6 @@
-﻿namespace Domain.Repositories.Common
+﻿using Domain.Entities;
+
+namespace Domain.Repositories.Common
 {
     public interface IUnitOfWork : IDisposable
     {

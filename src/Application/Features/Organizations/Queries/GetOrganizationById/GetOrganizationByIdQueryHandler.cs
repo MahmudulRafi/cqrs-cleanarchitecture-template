@@ -19,7 +19,6 @@ namespace Application.Features.Organizations.Queries.GetOrganizationById
 
         public async Task<ServiceResponse> Handle(GetOrganizationByIdQuery request, CancellationToken cancellationToken)
         {
-
             ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
