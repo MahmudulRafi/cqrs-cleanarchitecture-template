@@ -1,16 +1,20 @@
-﻿using Application.Bookings.Services;
-using Application.Events.Services;
+﻿using Application.Features.Bookings.Services;
+using Application.Features.Events.Services;
+using Application.Features.Organizations.Services;
+using Application.Features.Users.Queries.GetAllUser;
+using Application.Features.Users.Queries.GetUserById;
+using Application.Features.Users.Services;
 using Application.Middlewares;
-using Application.Organizations.Services;
-using Application.Users.Queries.GetAllUser;
-using Application.Users.Queries.GetUserById;
-using Application.Users.Services;
+using Application.Utilities.Mappers;
+using Domain.Constants;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace Application
 {
+    [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public static class ConfigureServices
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
@@ -24,6 +28,8 @@ namespace Application
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUserQuery).GetTypeInfo().Assembly));
             services.AddValidatorsFromAssemblyContaining<GetUserByIdQueryValidator>(includeInternalTypes: true);
+
+            services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
 
             return services;
         }

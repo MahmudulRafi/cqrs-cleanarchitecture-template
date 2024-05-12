@@ -1,13 +1,24 @@
-﻿using Application.Common.Exceptions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
+using Domain.Constants;
+using Application.Exceptions;
 
 namespace Application.Middlewares
 {
+    [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public class GlobalExceptionHandlerMiddleware : IMiddleware
     {
+        private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
+
+        public GlobalExceptionHandlerMiddleware(ILogger<GlobalExceptionHandlerMiddleware> logger)
+        {
+            _logger = logger;
+        }
+
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
@@ -20,7 +31,7 @@ namespace Application.Middlewares
             }
         }
 
-        private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             int statusCode = exception switch
             {
@@ -47,6 +58,8 @@ namespace Application.Middlewares
             context.Response.StatusCode = statusCode;
 
             await context.Response.WriteAsync(jsonResponse, context.RequestAborted);
+
+            _logger.LogError("{@ProblemDetails}", problemDetails);
         }
     }
 }

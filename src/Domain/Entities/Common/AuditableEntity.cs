@@ -1,10 +1,14 @@
-﻿namespace Domain.Common
+﻿using Domain.Constants;
+using System.Diagnostics.CodeAnalysis;
+
+namespace Domain.Entities.Common
 {
-    public class AuditableEntity
+    [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
+    public class AuditableEntity : IAuditableEntity
     {
-        public Guid AddedBy { get; set; } = Guid.NewGuid();
-        public DateTime AddedDateTime { get; set; } = DateTime.UtcNow;
-        public Guid UpdateBy { get; set; } = Guid.NewGuid();
-        public DateTime UpdateDateTime { get; set; } = DateTime.UtcNow;
+        public string AddedBy { get; set; } = string.Empty;
+        public DateTime AddedDateTime { get; set; }
+        public string UpdateBy { get; set; } = string.Empty;
+        public DateTime UpdateDateTime { get; set; }
     }
 }

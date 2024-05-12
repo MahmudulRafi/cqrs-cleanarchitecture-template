@@ -14,6 +14,7 @@ namespace Infrastructure
                 var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
                 context.Database.EnsureCreated();
             }
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
