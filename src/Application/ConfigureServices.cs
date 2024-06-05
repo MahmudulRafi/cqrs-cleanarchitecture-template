@@ -5,7 +5,6 @@ using Application.Features.Users.Queries.GetAllUser;
 using Application.Features.Users.Queries.GetUserById;
 using Application.Features.Users.Services;
 using Application.Middlewares;
-using Application.Utilities.Mappers;
 using Domain.Constants;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,20 +16,25 @@ namespace Application
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public static class ConfigureServices
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
 
-            services.AddTransient<GlobalExceptionHandlerMiddleware>();
-
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUserQuery).GetTypeInfo().Assembly));
             services.AddValidatorsFromAssemblyContaining<GetUserByIdQueryValidator>(includeInternalTypes: true);
 
-            services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
+            //services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
 
+            return services;
+        }
+
+        public static IServiceCollection AddMiddlewares(this IServiceCollection services)
+        {
+            services.AddTransient<GlobalExceptionHandlerMiddleware>();
+            
             return services;
         }
     }

@@ -36,13 +36,7 @@ namespace Application.Features.Organizations.Services
             var filtedRequest = new FilteredItemRequest<Organization>()
             {
                 PageNumber = pageNumber,
-                PageSize = pageSize,
-                OrderBy = org => org.OrderBy(a => a.CreatedDateTime),
-                Filter = org => !org.IsDeleted, 
-                Includes = new List<Expression<Func<Organization, object>>>
-                {
-                    a => a.User ?? new User()
-                }
+                PageSize = pageSize
             };
 
             return await _unitOfWork.Organizations.GetItemsAsync(filtedRequest, cancellationToken);

@@ -9,7 +9,7 @@ using WebAPI;
 namespace Application
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public static class ConfigureApplicationOptions
+    public static class ConfigureServices
     {
         private const string JwtOptionsSectionName = "JWTOptions";
         public static IServiceCollection AddApplicationOptions(this IServiceCollection services, IConfiguration configuration)

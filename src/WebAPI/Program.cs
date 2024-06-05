@@ -1,9 +1,6 @@
 using Application;
 using Application.Middlewares;
 using Asp.Versioning.ApiExplorer;
-using Microsoft.Extensions.Options;
-using Serilog;
-using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configure services for reference assemblies
+// Configure services
 
 builder.Services
-    .AddApplicationServices()
+    .AddServices()
+    .AddMiddlewares()
     .AddInfrastructure()
     .AddApplicationOptions(builder.Configuration)
     .ConfigureApiVersioning()
@@ -25,22 +23,20 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-if (app.Environment.IsDevelopment())
-{
-    IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    if (apiVersionDescriptionProvider is not null)
     {
-        if (apiVersionDescriptionProvider is not null)
+        foreach (ApiVersionDescription description in apiVersionDescriptionProvider.ApiVersionDescriptions)
         {
-            foreach (ApiVersionDescription description in apiVersionDescriptionProvider.ApiVersionDescriptions)
-            {
-                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-            }
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
         }
-    });
-}
+    }
+});
+
 
 app.UseHttpsRedirection();
 
