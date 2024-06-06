@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  webapi:
+    image: ${DOCKER_REGISTRY-}synm-webapi
+    container_name: synm-webapi
+    build:
+      context: .
+      dockerfile: src/WebAPI/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"

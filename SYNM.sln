@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{50B41800-0F4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{33C4AE1C-D422-415A-BD7C-37CC4661AA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "tests\Application.UnitTests\Application.UnitTests.csproj", "{C0EAA29F-65B4-4FF9-81C6-818A9FB2AD92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "tests\Application.UnitTests\Application.UnitTests.csproj", "{C0EAA29F-65B4-4FF9-81C6-818A9FB2AD92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "tests\Domain.UnitTests\Domain.UnitTests.csproj", "{0481A727-5306-4AB0-8C0F-4613F8CB337B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "tests\Domain.UnitTests\Domain.UnitTests.csproj", "{0481A727-5306-4AB0-8C0F-4613F8CB337B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{CF17B807-E4D4-48AC-93D5-17F38BECB10C}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{C7D43B27-E41D-4F29-A326-EF0AA8B8B737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{285A5450-A35B-4986-B1AF-2D3E70119E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\WebAPI\WebAPI.csproj", "{285A5450-A35B-4986-B1AF-2D3E70119E5C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D97461E6-F2EB-4FD1-BFD0-6A38527C925E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{285A5450-A35B-4986-B1AF-2D3E70119E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{285A5450-A35B-4986-B1AF-2D3E70119E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{285A5450-A35B-4986-B1AF-2D3E70119E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97461E6-F2EB-4FD1-BFD0-6A38527C925E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97461E6-F2EB-4FD1-BFD0-6A38527C925E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97461E6-F2EB-4FD1-BFD0-6A38527C925E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97461E6-F2EB-4FD1-BFD0-6A38527C925E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
