@@ -1,4 +1,5 @@
 ﻿using Domain.Repositories.Common;
+using Infrastructure.Interceptors;
 using Infrastructure.Repositories.Common;
 
 namespace Infrastructure
@@ -7,7 +8,12 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(option => option.UseInMemoryDatabase("EventDB"));
+            services.AddDbContext<AppDbContext>((serviceProvider, option) => {
+                
+                var updateAuditableEntityInterceptor = serviceProvider.GetService<UpdateAuditableEntityInterceptor>()!;
+
+                option.UseInMemoryDatabase("EventDB").AddInterceptors(updateAuditableEntityInterceptor);
+            });
 
             using (var serviceScope = services.BuildServiceProvider().CreateScope())
             {

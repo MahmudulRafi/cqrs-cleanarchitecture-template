@@ -24,6 +24,8 @@
     <Folder Include="DTOs\Requests\" />
     <Folder Include="Extensions\" />
     <Folder Include="Attributes\" />
+    <Folder Include="Features\Organizations\Commands\DeleteOrganization\" />
+    <Folder Include="Features\Organizations\Commands\UpdateOrganization\" />
     <Folder Include="Utilities\Mappers\" />
   </ItemGroup>
 

@@ -18,6 +18,13 @@ namespace Application.DTOs.Responses
             return response;
         }
 
+        public static ServiceResponse HandleFailure(string errorMessage)
+        {
+            ServiceResponse response = new();
+            response.SetFailure(errorMessage);
+            return response;
+        }
+
         public static ServiceResponse HandleError(List<string> errorMessages)
         {
             ServiceResponse response = new();

@@ -15,9 +15,9 @@ namespace Application.Features.Organizations.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> CreateOrganizationAsync(Organization organization)
+        public async Task<bool> CreateOrganizationAsync(Organization organization, CancellationToken cancellationToken = default)
         {
-            await _unitOfWork.Organizations.AddAsync(organization);
+            await _unitOfWork.Organizations.AddAsync(organization, cancellationToken);
             return await _unitOfWork.SaveChangesAsync();
         }
 

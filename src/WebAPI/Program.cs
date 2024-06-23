@@ -17,7 +17,8 @@ builder.Services
     .AddInfrastructure()
     .AddApplicationOptions(builder.Configuration)
     .ConfigureApiVersioning()
-    .ConfigureSwagger();
+    .ConfigureSwagger()
+    .ConfigureApplicationServices();
 
 var app = builder.Build();
 
@@ -37,6 +38,13 @@ app.UseSwaggerUI(options =>
     }
 });
 
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseHttpsRedirection();
 

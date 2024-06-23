@@ -20,6 +20,7 @@ namespace Application.DTOs.Responses
         public void SetSuccess()
         {
             IsSuccessful = true;
+            StatusCode = HttpStatusCode.OK; 
         }
 
         public void SetSuccess(dynamic data)
@@ -27,6 +28,13 @@ namespace Application.DTOs.Responses
             Response = data;
             IsSuccessful = true;
             StatusCode = HttpStatusCode.OK;
+        }
+
+        public void SetFailure(string errorMessage)
+        {
+            ErrorMessages.Add(errorMessage);
+            IsSuccessful = false;   
+            StatusCode = HttpStatusCode.NoContent;
         }
 
         public void SetError(List<string> errorMessages)
