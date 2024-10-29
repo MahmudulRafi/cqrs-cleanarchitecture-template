@@ -1,5 +1,5 @@
-﻿using Domain.Entities;
-using Domain.Repositories.Common;
+﻿using Domain.Abstractions.Common;
+using Domain.Entities;
 
 namespace Application.Features.Bookings.Services
 {

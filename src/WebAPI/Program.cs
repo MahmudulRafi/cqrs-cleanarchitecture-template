@@ -1,6 +1,7 @@
 using Application;
-using Application.Middlewares;
 using Asp.Versioning.ApiExplorer;
+using Infrastructure.Identity.Models;
+using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +15,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services
     .AddServices()
     .AddMiddlewares()
-    .AddInfrastructure()
+    .AddInfrastructure(builder.Configuration)
     .AddApplicationOptions(builder.Configuration)
     .ConfigureApiVersioning()
-    .ConfigureSwagger()
-    .ConfigureApplicationServices();
+    .ConfigureSwagger();
 
 var app = builder.Build();
 
@@ -29,14 +29,19 @@ IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetR
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    if (apiVersionDescriptionProvider is not null)
+    apiVersionDescriptionProvider?
+   .ApiVersionDescriptions?
+   .Select(description => description.GroupName)
+   .ToList()
+   .ForEach(groupName => options.SwaggerEndpoint($"/swagger/{groupName}/swagger.json", groupName.ToUpperInvariant()));
+
+    if (!options.ConfigObject.Urls.Any())
     {
-        foreach (ApiVersionDescription description in apiVersionDescriptionProvider.ApiVersionDescriptions)
-        {
-            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-        }
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
     }
 });
+
+app.MapIdentityApi<ApplicationUser>();
 
 app.UseCors(builder =>
 {
@@ -48,10 +53,8 @@ app.UseCors(builder =>
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
-
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

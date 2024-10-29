@@ -1,13 +1,11 @@
-﻿using Domain.Repositories;
+﻿using Domain.Abstractions.Common;
+using Domain.Abstractions.Users;
+using Infrastructure.Identity.Entity;
 using Infrastructure.Repositories.Common;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository(AppDbContext context) : Repository<ApplicationUser>(context), IUserRepository
     {
-        public UserRepository(AppDbContext context) : base(context)
-        {
-
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.DTOs.Responses;
-using Application.Features.Users.Services;
+using Domain.Abstractions.Users.Service;
 using Domain.Entities;
 using FluentValidation;
 using FluentValidation.Results;
@@ -26,7 +26,7 @@ namespace Application.Features.Users.Queries.GetUserById
                 return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
             }
 
-            User user = await _userService.GetByIdAsync(request.Id, cancellationToken);
+            ApplicationUser user = await _userService.GetByIdAsync(request.Id, cancellationToken);
 
             return ServiceResponseHandler.HandleSuccess(user);
         }

@@ -9,45 +9,45 @@ namespace Application.DTOs.Responses
     {
         public ServiceResponse()
         {
-            ErrorMessages = new List<string>();
+            ErrorMessages = [];
         }
 
         public dynamic? Response { get; set; }
-        public bool? IsSuccessful { get; set; }
+        public bool? Successful { get; set; }
         public List<string> ErrorMessages { get; set; }
         public HttpStatusCode StatusCode { get; set; }
 
         public void SetSuccess()
         {
-            IsSuccessful = true;
+            Successful = true;
             StatusCode = HttpStatusCode.OK; 
         }
 
         public void SetSuccess(dynamic data)
         {
             Response = data;
-            IsSuccessful = true;
+            Successful = true;
             StatusCode = HttpStatusCode.OK;
         }
 
         public void SetFailure(string errorMessage)
         {
             ErrorMessages.Add(errorMessage);
-            IsSuccessful = false;   
+            Successful = false;   
             StatusCode = HttpStatusCode.NoContent;
         }
 
         public void SetError(List<string> errorMessages)
         {
             ErrorMessages = errorMessages;
-            IsSuccessful = false;
+            Successful = false;
             StatusCode = HttpStatusCode.InternalServerError;
         }
 
         public void SetValidationError(List<string> errorMessages)
         {
             ErrorMessages = errorMessages;
-            IsSuccessful = false;
+            Successful = false;
             StatusCode = HttpStatusCode.BadRequest;
         }
     }

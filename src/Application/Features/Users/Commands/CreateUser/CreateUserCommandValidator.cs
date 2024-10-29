@@ -1,4 +1,4 @@
-﻿using Application.Features.Users.Services;
+﻿using Domain.Abstractions.Users.Service;
 using FluentValidation;
 
 namespace Application.Features.Users.Commands.CreateUser

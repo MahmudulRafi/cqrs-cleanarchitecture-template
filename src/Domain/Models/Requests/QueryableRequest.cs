@@ -2,7 +2,7 @@
 
 namespace Domain.Models.Requests
 {
-    public record FilteredItemRequest<T>
+    public record QueryableRequest<T>
     {
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;

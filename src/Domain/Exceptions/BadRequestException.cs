@@ -1,12 +1,12 @@
 ﻿using Domain.Constants;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Exceptions
+namespace Domain.Exceptions
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public class NotFoundException : Exception
+    public class BadRequestException : Exception
     {
-        public NotFoundException(string message) : base(message)
+        public BadRequestException(string message) : base(message)
         {
         }
     }

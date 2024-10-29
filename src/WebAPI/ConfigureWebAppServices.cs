@@ -3,14 +3,12 @@ using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Domain.Constants;
 using Infrastructure.Interceptors;
-using Microsoft.OpenApi.Models;
 using System.Diagnostics.CodeAnalysis;
-using WebAPI;
 
-namespace Application
+namespace WebAPI
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public static class ConfigureServices
+    public static class ConfigureWebAppServices
     {
         private const string JwtOptionsSectionName = "JWTOptions";
         public static IServiceCollection AddApplicationOptions(this IServiceCollection services, IConfiguration configuration)
@@ -55,24 +53,6 @@ namespace Application
             services.AddSwaggerGen();
 
             services.ConfigureOptions<ConfigureSwaggerOptions>();
-
-            return services;
-        }
-
-        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
-        {
-            services.AddSingleton<UpdateAuditableEntityInterceptor>();
-
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
-                    });
-            });
 
             return services;
         }

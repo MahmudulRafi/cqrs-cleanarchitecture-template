@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Entities.Common;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Entities
@@ -10,11 +10,10 @@ namespace Domain.Entities
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
+        public List<string> Members { get; set; } = [];
 
         // Navigation properties
-
-        [ForeignKey(nameof(User))]
-        public string ReportingUserId { get; set; } = string.Empty;
-        public User? User { get; set; }
+        public string? ReportingUserId { get; set; }
+        public virtual IEnumerable<Event> Events { get; set; } = [];
     }
 }

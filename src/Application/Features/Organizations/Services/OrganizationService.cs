@@ -1,23 +1,18 @@
-﻿using Application.DTOs.Responses;
+﻿using Domain.Abstractions.Common;
 using Domain.Entities;
 using Domain.Models.Requests;
 using Domain.Models.Responses;
-using Domain.Repositories.Common;
-using System.Linq.Expressions;
 
 namespace Application.Features.Organizations.Services
 {
-    public class OrganizationService : IOrganizationService
+    public class OrganizationService(IUnitOfWork unitOfWork) : IOrganizationService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OrganizationService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<bool> CreateOrganizationAsync(Organization organization, CancellationToken cancellationToken = default)
         {
             await _unitOfWork.Organizations.AddAsync(organization, cancellationToken);
+
             return await _unitOfWork.SaveChangesAsync();
         }
 
@@ -33,10 +28,12 @@ namespace Application.Features.Organizations.Services
 
         public async Task<PaginatedResponse<List<Organization>>> GetOrganizationsAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
-            var filtedRequest = new FilteredItemRequest<Organization>()
+            var filtedRequest = new QueryableRequest<Organization>()
             {
                 PageNumber = pageNumber,
-                PageSize = pageSize
+                PageSize = pageSize,
+                Includes = [],
+                OrderBy = o => o.OrderBy(org => org.Name)
             };
 
             return await _unitOfWork.Organizations.GetItemsAsync(filtedRequest, cancellationToken);

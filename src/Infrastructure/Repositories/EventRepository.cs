@@ -1,12 +1,14 @@
-﻿using Domain.Repositories;
+﻿using Domain.Abstractions.Events;
+using Infrastructure.Data;
 using Infrastructure.Repositories.Common;
 
 namespace Infrastructure.Repositories
 {
-    public class EventRepository : BaseRepository<Event>, IEventRepository
+    public class EventRepository : Repository<Event>, IEventRepository
     {
-        public EventRepository(AppDbContext context) : base(context)
-        {
+        public EventRepository(AppDbContext context) : base(context) 
+        { 
+
         }
     }
 }

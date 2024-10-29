@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Entities.Common
 {
     public interface IAuditableEntity
     {
@@ -6,6 +6,5 @@
         DateTime CreatedDateTime { get; set; }
         string LastUpdatedBy { get; set; }
         DateTime? LastUpdatedDateTime { get; set; }
-        bool IsDeleted { get; set; }
     }
 }

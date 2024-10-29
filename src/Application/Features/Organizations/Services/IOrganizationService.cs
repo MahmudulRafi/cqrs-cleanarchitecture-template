@@ -1,5 +1,4 @@
-﻿using Application.DTOs.Responses;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Models.Responses;
 
 namespace Application.Features.Organizations.Services

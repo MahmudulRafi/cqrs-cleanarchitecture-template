@@ -1,7 +1,7 @@
-﻿using Application.Abstractions.Messaging;
-using Application.DTOs.Responses;
+﻿using Application.DTOs.Responses;
 using Application.Features.Organizations.Commands.CreateOrganization;
-using Application.Features.Organizations.Queries;
+using Application.Features.Organizations.Queries.GetAllOrganization;
+using Application.Features.Organizations.Queries.GetOrganizationById;
 using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

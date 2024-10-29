@@ -1,9 +1,8 @@
 ﻿using Application.Features.Bookings.Services;
 using Application.Features.Events.Services;
+using Application.Features.Organizations.Queries.GetAllOrganization;
+using Application.Features.Organizations.Queries.GetOrganizationById;
 using Application.Features.Organizations.Services;
-using Application.Features.Users.Queries.GetAllUser;
-using Application.Features.Users.Queries.GetUserById;
-using Application.Features.Users.Services;
 using Application.Middlewares;
 using Domain.Constants;
 using FluentValidation;
@@ -14,17 +13,17 @@ using System.Reflection;
 namespace Application
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public static class ConfigureServices
+    public static class ConfigureApplicationServices
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
 
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllUserQuery).GetTypeInfo().Assembly));
-            services.AddValidatorsFromAssemblyContaining<GetUserByIdQueryValidator>(includeInternalTypes: true);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllOrganizationQuery).GetTypeInfo().Assembly));
+            services.AddValidatorsFromAssemblyContaining<GetOrganizationByIdQueryValidator>(includeInternalTypes: true);
 
             //services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
 

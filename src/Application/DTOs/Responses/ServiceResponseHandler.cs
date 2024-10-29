@@ -34,7 +34,7 @@ namespace Application.DTOs.Responses
 
         public static ServiceResponse HandleValidationError(List<ValidationFailure> validationFailures)
         {
-            List<string> errorMessages = new();
+            List<string> errorMessages = [];
 
             if (validationFailures.Count > 0)
             {

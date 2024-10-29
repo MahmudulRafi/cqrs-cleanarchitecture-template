@@ -1,33 +1,74 @@
-﻿using Domain.Repositories;
-using Domain.Repositories.Common;
+﻿using Domain.Abstractions.Bookings;
+using Domain.Abstractions.Common;
+using Domain.Abstractions.Events;
+using Domain.Abstractions.Organizations;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Repositories.Common
 {
-    public sealed class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork(AppDbContext context) : IUnitOfWork
     {
-        private AppDbContext Context { get; set; }
-        public IUserRepository Users { get; private set; }
-        public IBookingRepository Bookings { get; private set; }
-        public IEventRepository Events { get; private set; }
-        public IOrganizationRepository Organizations { get; private set; }
-
-        public UnitOfWork(AppDbContext context)
-        {
-            Context = context;
-            Users = new UserRepository(Context);
-            Bookings = new BookingRepository(Context);
-            Events = new EventRepository(Context);
-            Organizations = new OrganizationRepository(Context);
-        }
+        private readonly AppDbContext _context = context;
+        private readonly AsyncLocal<IDbContextTransaction?> _currentTransaction = new();
+        public IBookingRepository Bookings { get; private set; } = new BookingRepository(context);
+        public IEventRepository Events { get; private set; } = new EventRepository(context);
+        public IOrganizationRepository Organizations { get; private set; } = new OrganizationRepository(context);
 
         public void Dispose()
         {
-            Context.Dispose();
+            _context?.Dispose();
+            _currentTransaction.Value?.Dispose();
+            _currentTransaction.Value = null;
         }
 
-        public async Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return await Context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
+        }
+
+        public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            if (_currentTransaction.Value is not null)
+            {
+                return;
+            }
+
+            _currentTransaction.Value = await _context.Database.BeginTransactionAsync(cancellationToken);
+        }
+
+        public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            if (_currentTransaction.Value == null)
+            {
+                return;
+            }
+
+            try
+            {
+                await SaveChangesAsync(cancellationToken);
+                await _currentTransaction.Value.CommitAsync(cancellationToken);
+            }
+            catch
+            {
+                await RollbackTransactionAsync(cancellationToken);
+                throw;
+            }
+            finally
+            {
+                _currentTransaction.Value?.Dispose();
+                _currentTransaction.Value = null;
+            }
+        }
+
+        public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            if (_currentTransaction.Value is not null)
+            {
+                await _currentTransaction.Value.RollbackAsync(cancellationToken);
+                _currentTransaction.Value.Dispose();
+                _currentTransaction.Value = null;
+            }
         }
     }
 }

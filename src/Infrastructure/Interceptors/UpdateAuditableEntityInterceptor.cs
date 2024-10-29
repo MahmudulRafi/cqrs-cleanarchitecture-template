@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Domain.Entities.Common;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Infrastructure.Interceptors
 {
@@ -36,6 +37,5 @@ namespace Infrastructure.Interceptors
 
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
-
     }
 }

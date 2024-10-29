@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.DTOs.Responses;
-using Application.Features.Users.Services;
-using Domain.Entities;
+using Domain.Abstractions.Users.Service;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -27,7 +26,7 @@ namespace Application.Features.Users.Commands.CreateUser
                 return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
             }
 
-            User user = new() { FirstName = request.Name, Email = request.Email, LastName = request.Phone };
+            ApplicationUser user = new() { FirstName = request.Name, Email = request.Email, LastName = request.Phone };
 
             bool reponse = await _userService.CreateUserAsync(user, cancellationToken);
 
