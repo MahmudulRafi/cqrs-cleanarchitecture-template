@@ -1,6 +1,8 @@
 using Application;
 using Asp.Versioning.ApiExplorer;
-using Infrastructure.Identity.Models;
+using Identity;
+using Identity.Models;
+using Persistence;
 using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services
     .AddServices()
     .AddMiddlewares()
-    .AddInfrastructure(builder.Configuration)
-    .AddApplicationOptions(builder.Configuration)
+    .AddIdentity(builder.Configuration)
+    .AddPersistence(builder.Configuration)
     .ConfigureApiVersioning()
     .ConfigureSwagger();
 

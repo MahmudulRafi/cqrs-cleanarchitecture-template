@@ -1,8 +1,7 @@
-﻿using Application.DTOs.Options;
+﻿using Application.Models.Common;
 using Asp.Versioning;
 using Asp.Versioning.Conventions;
 using Domain.Constants;
-using Infrastructure.Interceptors;
 using System.Diagnostics.CodeAnalysis;
 
 namespace WebAPI
@@ -10,16 +9,6 @@ namespace WebAPI
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
     public static class ConfigureWebAppServices
     {
-        private const string JwtOptionsSectionName = "JWTOptions";
-        public static IServiceCollection AddApplicationOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            // Configure options
-
-            services.Configure<JwtOption>(configuration.GetSection(JwtOptionsSectionName));
-
-            return services;
-        }
-
         public static IServiceCollection ConfigureApiVersioning(this IServiceCollection services)
         {
             services.AddApiVersioning(

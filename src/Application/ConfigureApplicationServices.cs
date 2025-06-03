@@ -1,9 +1,8 @@
-﻿using Application.Features.Bookings.Services;
-using Application.Features.Events.Services;
-using Application.Features.Organizations.Queries.GetAllOrganization;
+﻿using Application.Features.Organizations.Queries.GetAllOrganization;
 using Application.Features.Organizations.Queries.GetOrganizationById;
-using Application.Features.Organizations.Services;
+using Application.Interfaces.Organizations;
 using Application.Middlewares;
+using Application.Services;
 using Domain.Constants;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,15 +16,10 @@ namespace Application
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            //services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IEventService, EventService>();
-            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IOrganizationService, OrganizationService>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(GetAllOrganizationQuery).GetTypeInfo().Assembly));
             services.AddValidatorsFromAssemblyContaining<GetOrganizationByIdQueryValidator>(includeInternalTypes: true);
-
-            //services.AddAutoMapper(typeof(OrganizationMappingProfiles).Assembly);
 
             return services;
         }

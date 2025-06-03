@@ -1,4 +1,4 @@
-﻿using Application.Features.Organizations.Services;
+﻿using Application.Interfaces.Organizations;
 using FluentValidation;
 
 namespace Application.Features.Organizations.Commands.CreateOrganization

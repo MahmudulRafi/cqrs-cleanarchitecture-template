@@ -1,7 +1,7 @@
 ﻿namespace Domain.Entities.Common
 {
-    public interface IEntity
+    public interface IEntity<TKey>
     {
-        string Id { get; set; }   
+        TKey Id { get; set; }   
     }
 }

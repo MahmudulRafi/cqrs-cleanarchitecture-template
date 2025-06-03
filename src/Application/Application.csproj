@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="Features\Organizations\Commands\DeleteOrganization\" />
-    <Folder Include="Features\Organizations\Commands\UpdateOrganization\" />
+    <Folder Include="Models\Requests\" />
+    <Folder Include="Features\" />
+    <Folder Include="Services\" />
+    <Folder Include="Shared\Attributes\" />
+    <Folder Include="Shared\Extensions\" />
     <Folder Include="Utilities\Mappers\" />
   </ItemGroup>
 

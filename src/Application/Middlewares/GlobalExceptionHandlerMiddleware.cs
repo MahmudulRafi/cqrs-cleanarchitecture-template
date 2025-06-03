@@ -10,15 +10,8 @@ using Domain.Exceptions;
 namespace Application.Middlewares
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
-    public class GlobalExceptionHandlerMiddleware : IMiddleware
+    public class GlobalExceptionHandlerMiddleware(ILogger<GlobalExceptionHandlerMiddleware> logger) : IMiddleware
     {
-        private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
-
-        public GlobalExceptionHandlerMiddleware(ILogger<GlobalExceptionHandlerMiddleware> logger)
-        {
-            _logger = logger;
-        }
-
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
@@ -59,7 +52,7 @@ namespace Application.Middlewares
 
             await context.Response.WriteAsync(jsonResponse, context.RequestAborted);
 
-            _logger.LogError("{@ProblemDetails}", problemDetails);
+            logger.LogError("{@ProblemDetails}", problemDetails);
         }
     }
 }
