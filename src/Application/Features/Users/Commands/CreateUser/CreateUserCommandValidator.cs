@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Domain.Abstractions.Users.Service;
+=======
+﻿using Application.Features.Users.Services;
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 using FluentValidation;
 
 namespace Application.Features.Users.Commands.CreateUser

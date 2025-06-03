@@ -1,6 +1,10 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.DTOs.Responses;
+<<<<<<< HEAD
 using Domain.Abstractions.Users.Service;
+=======
+using Application.Features.Users.Services;
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 using Domain.Entities;
 using FluentValidation;
 using FluentValidation.Results;
@@ -26,7 +30,11 @@ namespace Application.Features.Users.Queries.GetUserById
                 return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
             }
 
+<<<<<<< HEAD
             ApplicationUser user = await _userService.GetByIdAsync(request.Id, cancellationToken);
+=======
+            User user = await _userService.GetByIdAsync(request.Id, cancellationToken);
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 
             return ServiceResponseHandler.HandleSuccess(user);
         }

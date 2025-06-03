@@ -11,10 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Remove="Controllers\Version 1\UsersController.cs" />
   </ItemGroup>
 
   <ItemGroup>
+=======
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
     <PackageReference Include="Asp.Versioning.Mvc" Version="7.1.1" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />

@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 ﻿using Application.Interfaces.Organizations;
 using FluentValidation;
 
 namespace Application.Features.Organizations.Commands.CreateOrganization
+=======
+﻿using Application.Features.Organizations.Services;
+using FluentValidation;
+
+namespace Application.Features.Organizations.Commands
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 {
     public class CreateOrganizationCommandValidator : AbstractValidator<CreateOrganizationCommand>
     {
@@ -10,6 +17,7 @@ namespace Application.Features.Organizations.Commands.CreateOrganization
         {
             _organizationService = organizationService;
 
+<<<<<<< HEAD
             Validate();
         }
 
@@ -36,6 +44,33 @@ namespace Application.Features.Organizations.Commands.CreateOrganization
             RuleFor(command => command.Phone)
                 .NotEmpty()
                 .WithMessage("Phone is required");
+=======
+            ValidateCommand();
+        }
+
+        private void ValidateCommand()
+        {
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                .WithMessage("Organization name required.")
+                .NotNull()
+                .WithMessage("Organization name required.")
+                .MustAsync(async (name, cancellationToken) => !await _organizationService.OrganizationNameExistsAsync(name, cancellationToken))
+                .WithMessage("Organization already exists!");
+
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Organization email required.")
+                .EmailAddress()
+                .WithMessage("Please, provide a valid email address");
+
+            RuleFor(x => x.Phone)
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Organization phone required.");
+
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
         }
     }
 }

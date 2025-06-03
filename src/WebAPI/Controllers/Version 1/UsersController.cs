@@ -11,7 +11,11 @@ namespace WebAPI.Controllers
     [ApiController]
     [ApiVersion(1)]
     [Route("api/v{version:apiVersion}/Users")]
+<<<<<<< HEAD
     public class UsersController : ControllerBase
+=======
+    public class UsersController : Controller
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
     {
         private readonly ISender _sender;
         public UsersController(ISender sender)

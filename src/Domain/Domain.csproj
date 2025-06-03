@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+<<<<<<< HEAD
 	<ItemGroup>
 		<Compile Remove="Events\**" />
 		<Compile Remove="ValueObjects\**" />
@@ -22,5 +23,30 @@
 	<ItemGroup>
 		<Folder Include="Enums\" />
 	</ItemGroup>
+=======
+  <ItemGroup>
+    <Compile Remove="Events\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Events\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="ValueObjects\**" />
+  </ItemGroup>
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
+
+  <ItemGroup>
+    <Compile Remove="Entities\Common\AuditableEntity.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.18" />
+  </ItemGroup>
 
 </Project>

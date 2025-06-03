@@ -33,7 +33,11 @@ namespace WebAPI
             }
         }
 
+<<<<<<< HEAD
         private static OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
+=======
+        private OpenApiInfo CreateVersionInfo(ApiVersionDescription description)
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
         {
             var info = new OpenApiInfo()
             {

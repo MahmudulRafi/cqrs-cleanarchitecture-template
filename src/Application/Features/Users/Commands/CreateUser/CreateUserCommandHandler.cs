@@ -1,6 +1,11 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.DTOs.Responses;
+<<<<<<< HEAD
 using Domain.Abstractions.Users.Service;
+=======
+using Application.Features.Users.Services;
+using Domain.Entities;
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -26,7 +31,11 @@ namespace Application.Features.Users.Commands.CreateUser
                 return ServiceResponseHandler.HandleValidationError(validationResult.Errors);
             }
 
+<<<<<<< HEAD
             ApplicationUser user = new() { FirstName = request.Name, Email = request.Email, LastName = request.Phone };
+=======
+            User user = new() { FirstName = request.Name, Email = request.Email, LastName = request.Phone };
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 
             bool reponse = await _userService.CreateUserAsync(user, cancellationToken);
 

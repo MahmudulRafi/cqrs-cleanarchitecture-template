@@ -1,8 +1,15 @@
 using Application;
+<<<<<<< HEAD
 using Asp.Versioning.ApiExplorer;
 using Identity;
 using Identity.Models;
 using Persistence;
+=======
+using Application.Middlewares;
+using Asp.Versioning.ApiExplorer;
+using Microsoft.Extensions.Options;
+using Serilog;
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+<<<<<<< HEAD
 // Configure services
 
 builder.Services
@@ -19,6 +27,14 @@ builder.Services
     .AddMiddlewares()
     .AddIdentity(builder.Configuration)
     .AddPersistence(builder.Configuration)
+=======
+// Configure services for reference assemblies
+
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructure()
+    .AddApplicationOptions(builder.Configuration)
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
     .ConfigureApiVersioning()
     .ConfigureSwagger();
 
@@ -26,6 +42,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+<<<<<<< HEAD
 IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
 app.UseSwagger();
@@ -52,6 +69,24 @@ app.UseCors(builder =>
     .AllowAnyMethod()
     .AllowAnyHeader();
 });
+=======
+if (app.Environment.IsDevelopment())
+{
+    IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        if (apiVersionDescriptionProvider is not null)
+        {
+            foreach (ApiVersionDescription description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+            {
+                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+            }
+        }
+    });
+}
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 
 app.UseHttpsRedirection();
 

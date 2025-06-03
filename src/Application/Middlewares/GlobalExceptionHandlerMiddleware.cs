@@ -5,13 +5,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
 using Domain.Constants;
+<<<<<<< HEAD
 using Domain.Exceptions;
+=======
+using Application.Exceptions;
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
 
 namespace Application.Middlewares
 {
     [ExcludeFromCodeCoverage(Justification = CodeCoverageJustifications.NoBusinessLogic)]
+<<<<<<< HEAD
     public class GlobalExceptionHandlerMiddleware(ILogger<GlobalExceptionHandlerMiddleware> logger) : IMiddleware
+=======
+    public class GlobalExceptionHandlerMiddleware : IMiddleware
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
     {
+        private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
+
+        public GlobalExceptionHandlerMiddleware(ILogger<GlobalExceptionHandlerMiddleware> logger)
+        {
+            _logger = logger;
+        }
+
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
@@ -52,7 +67,11 @@ namespace Application.Middlewares
 
             await context.Response.WriteAsync(jsonResponse, context.RequestAborted);
 
+<<<<<<< HEAD
             logger.LogError("{@ProblemDetails}", problemDetails);
+=======
+            _logger.LogError("{@ProblemDetails}", problemDetails);
+>>>>>>> 680e77cedade805de7714eadd4bffbf2572be694
         }
     }
 }
