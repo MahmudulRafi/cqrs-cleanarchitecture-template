@@ -1,8 +1,8 @@
 using Application;
-using Application.Middlewares;
 using Asp.Versioning.ApiExplorer;
-using Microsoft.Extensions.Options;
-using Serilog;
+using Identity;
+using Identity.Models;
+using Persistence;
 using WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configure services for reference assemblies
+// Configure services
 
 builder.Services
-    .AddApplicationServices()
-    .AddInfrastructure()
-    .AddApplicationOptions(builder.Configuration)
+    .AddServices()
+    .AddMiddlewares()
+    .AddIdentity(builder.Configuration)
+    .AddPersistence(builder.Configuration)
     .ConfigureApiVersioning()
     .ConfigureSwagger();
 
@@ -25,29 +26,37 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-if (app.Environment.IsDevelopment())
-{
-    IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+IApiVersionDescriptionProvider apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    apiVersionDescriptionProvider?
+   .ApiVersionDescriptions?
+   .Select(description => description.GroupName)
+   .ToList()
+   .ForEach(groupName => options.SwaggerEndpoint($"/swagger/{groupName}/swagger.json", groupName.ToUpperInvariant()));
+
+    if (!options.ConfigObject.Urls.Any())
     {
-        if (apiVersionDescriptionProvider is not null)
-        {
-            foreach (ApiVersionDescription description in apiVersionDescriptionProvider.ApiVersionDescriptions)
-            {
-                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-            }
-        }
-    });
-}
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
+    }
+});
+
+app.MapIdentityApi<ApplicationUser>();
+
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseHttpsRedirection();
-
-app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

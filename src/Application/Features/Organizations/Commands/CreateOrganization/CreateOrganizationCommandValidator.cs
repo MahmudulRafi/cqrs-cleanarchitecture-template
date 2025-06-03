@@ -1,7 +1,7 @@
-﻿using Application.Features.Organizations.Services;
+﻿using Application.Interfaces.Organizations;
 using FluentValidation;
 
-namespace Application.Features.Organizations.Commands
+namespace Application.Features.Organizations.Commands.CreateOrganization
 {
     public class CreateOrganizationCommandValidator : AbstractValidator<CreateOrganizationCommand>
     {
@@ -10,31 +10,32 @@ namespace Application.Features.Organizations.Commands
         {
             _organizationService = organizationService;
 
-            ValidateCommand();
+            Validate();
         }
 
-        private void ValidateCommand()
+        private void Validate()
         {
-            RuleFor(x => x.Name)
+            RuleFor(command => command)
                 .NotEmpty()
-                .WithMessage("Organization name required.")
-                .NotNull()
-                .WithMessage("Organization name required.")
-                .MustAsync(async (name, cancellationToken) => !await _organizationService.OrganizationNameExistsAsync(name, cancellationToken))
-                .WithMessage("Organization already exists!");
+                .WithMessage("Invalid command");
 
-            RuleFor(x => x.Email)
+            RuleFor(command => command.Name)
                 .NotEmpty()
-                .NotNull()
-                .WithMessage("Organization email required.")
+                .WithMessage("Name is required")
+                .MustAsync(async (string name, CancellationToken cancellationToken) =>
+                {
+                    return !await _organizationService.OrganizationNameExistsAsync(name, cancellationToken);
+                }).WithMessage("Organization with this name already exists");
+
+            RuleFor(command => command.Email)
+                .NotEmpty()
+                .WithMessage("Email is required")
                 .EmailAddress()
-                .WithMessage("Please, provide a valid email address");
+                .WithMessage("Provide a valid email address");
 
-            RuleFor(x => x.Phone)
+            RuleFor(command => command.Phone)
                 .NotEmpty()
-                .NotNull()
-                .WithMessage("Organization phone required.");
-
+                .WithMessage("Phone is required");
         }
     }
 }

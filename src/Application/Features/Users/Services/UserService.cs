@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Repositories.Common;
-using System.Linq.Expressions;
+﻿using Domain.Abstractions.Common;
 
 namespace Application.Features.Users.Services
 {
@@ -13,7 +11,7 @@ namespace Application.Features.Users.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<bool> CreateUserAsync(User user, CancellationToken cancellationToken = default)
+        public async Task<bool> CreateUserAsync(ApplicationUser user, CancellationToken cancellationToken = default)
         {
             //await _unitOfWork.Users.InsertAsync(user, cancellationToken);
             //return await _unitOfWork.SaveChangesAsync();
@@ -21,14 +19,14 @@ namespace Application.Features.Users.Services
             throw new NotImplementedException();
         }
 
-        public async Task<User> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+        public async Task<ApplicationUser> GetByIdAsync(string id, CancellationToken cancellationToken = default)
         {
             //return await _unitOfWork.Users.GetByIdAsync(id, cancellationToken);
 
             throw new NotImplementedException();
         }
 
-        public async Task<List<User>> GetUsersAsync(CancellationToken cancellationToken = default)
+        public async Task<List<ApplicationUser>> GetUsersAsync(CancellationToken cancellationToken = default)
         {
             //return await _unitOfWork.Users.GetAllAsync(cancellationToken);
 

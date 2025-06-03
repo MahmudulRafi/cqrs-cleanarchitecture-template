@@ -1,16 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Users\**" />
+    <EmbeddedResource Remove="Features\Users\**" />
+    <None Remove="Features\Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
-    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
@@ -21,9 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Attributes\" />
+    <Folder Include="Models\Requests\" />
+    <Folder Include="Features\" />
+    <Folder Include="Services\" />
+    <Folder Include="Shared\Attributes\" />
+    <Folder Include="Shared\Extensions\" />
+    <Folder Include="Utilities\Mappers\" />
   </ItemGroup>
 
 </Project>

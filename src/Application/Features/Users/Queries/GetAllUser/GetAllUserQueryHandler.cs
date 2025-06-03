@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.DTOs.Responses;
-using Application.Features.Users.Services;
+using Domain.Abstractions.Users.Service;
 using Domain.Entities;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +18,7 @@ namespace Application.Features.Users.Queries.GetAllUser
 
         public async Task<ServiceResponse> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
         {
-            List<User> users = await _userService.GetUsersAsync(cancellationToken);
+            List<ApplicationUser> users = await _userService.GetUsersAsync(cancellationToken);
 
             _logger.LogInformation("{Response}", users);
 

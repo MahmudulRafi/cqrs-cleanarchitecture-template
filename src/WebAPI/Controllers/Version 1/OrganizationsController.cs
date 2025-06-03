@@ -1,8 +1,10 @@
-﻿using Application.Abstractions.Messaging;
-using Application.DTOs.Responses;
-using Application.Features.Organizations.Commands;
-using Application.Features.Organizations.Queries;
+﻿using Application.Features.Organizations.Commands.CreateOrganization;
+using Application.Features.Organizations.Queries.GetAllOrganization;
+using Application.Features.Organizations.Queries.GetOrganizationById;
+using Application.Models.Common;
 using Asp.Versioning;
+using Domain.Entities;
+using Domain.Models.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +12,7 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [ApiVersion(1)]
-    [Route("api/v{version:apiVersion}/Organizations")]
+    [Route("api/v{version:apiVersion}/organizations")]
     public sealed class OrganizationsController : ControllerBase
     {
         private readonly ISender _sender;
@@ -20,13 +22,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ServiceResponse> GetOrganizations([FromQuery] GetAllOrganizationQuery query, CancellationToken cancellationToken)
+        public async Task<Result<PaginatedResponse<List<Organization>>>> GetOrganizations([FromQuery] GetAllOrganizationQuery query, CancellationToken cancellationToken)
         {
             return await _sender.Send(query, cancellationToken);
         }
 
         [HttpGet("{organizationId}")]
-        public async Task<ServiceResponse> GetOrganizationById(string organizationId, CancellationToken cancellationToken)
+        public async Task<Result<Organization>> GetOrganizationById(string organizationId, CancellationToken cancellationToken)
         {
             GetOrganizationByIdQuery query = new() { Id = organizationId };
 
@@ -34,10 +36,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ServiceResponse> CreateOrganization([FromBody] CreateOrganizationCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Organization>> CreateOrganization([FromBody] CreateOrganizationCommand command, CancellationToken cancellationToken)
         {
             return await _sender.Send(command, cancellationToken);
         }
-
     }
 }
