@@ -2,7 +2,7 @@
 using Application.Features.Organizations.Queries.GetOrganizationById;
 using Application.Interfaces.Organizations;
 using Application.Middlewares;
-using Application.Services;
+using Application.Services.Organizations;
 using Domain.Constants;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;

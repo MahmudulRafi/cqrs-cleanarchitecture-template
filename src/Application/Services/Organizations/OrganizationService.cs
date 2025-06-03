@@ -1,22 +1,20 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces.Organizations;
+using Domain.Entities;
 using Domain.Interfaces.Common;
 using Domain.Models.Requests;
 using Domain.Models.Responses;
 
-namespace Application.Features.Organizations.Services
+namespace Application.Services.Organizations
 {
-    public class OrganizationService : IOrganizationService
+    public class OrganizationService(IUnitOfWork unitOfWork) : IOrganizationService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public OrganizationService(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<bool> CreateOrganizationAsync(Organization organization)
+        public async Task<bool> CreateOrganizationAsync(Organization organization, CancellationToken cancellationToken = default)
         {
-            await _unitOfWork.Organizations.AddAsync(organization);
-            return await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Organizations.AddAsync(organization, cancellationToken);
+
+            return await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<Organization> GetOrganizationByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -35,7 +33,8 @@ namespace Application.Features.Organizations.Services
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
-                OrderBy = org => org.OrderBy(a => a.CreatedDateTime),
+                Includes = [],
+                OrderBy = o => o.OrderBy(org => org.Name)
             };
 
             return await _unitOfWork.Organizations.GetItemsAsync(filtedRequest, cancellationToken);

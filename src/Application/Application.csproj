@@ -29,7 +29,6 @@
   <ItemGroup>
     <Folder Include="Models\Requests\" />
     <Folder Include="Features\" />
-    <Folder Include="Services\" />
     <Folder Include="Shared\Attributes\" />
     <Folder Include="Shared\Extensions\" />
     <Folder Include="Utilities\Mappers\" />
