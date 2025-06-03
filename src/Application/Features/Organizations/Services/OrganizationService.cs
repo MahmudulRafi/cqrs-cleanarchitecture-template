@@ -1,9 +1,7 @@
-﻿using Application.DTOs.Responses;
-using Domain.Entities;
+﻿using Domain.Entities;
+using Domain.Interfaces.Common;
 using Domain.Models.Requests;
 using Domain.Models.Responses;
-using Domain.Repositories.Common;
-using System.Linq.Expressions;
 
 namespace Application.Features.Organizations.Services
 {
@@ -21,7 +19,7 @@ namespace Application.Features.Organizations.Services
             return await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<Organization> GetOrganizationByIdAsync(string id, CancellationToken cancellationToken = default)
+        public async Task<Organization> GetOrganizationByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _unitOfWork.Organizations.GetByIdAsync(id, cancellationToken);
         }
@@ -33,16 +31,11 @@ namespace Application.Features.Organizations.Services
 
         public async Task<PaginatedResponse<List<Organization>>> GetOrganizationsAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
-            var filtedRequest = new FilteredItemRequest<Organization>()
+            var filtedRequest = new QueryableRequest<Organization>()
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 OrderBy = org => org.OrderBy(a => a.CreatedDateTime),
-                Filter = org => !org.IsDeleted, 
-                Includes = new List<Expression<Func<Organization, object>>>
-                {
-                    a => a.User ?? new User()
-                }
             };
 
             return await _unitOfWork.Organizations.GetItemsAsync(filtedRequest, cancellationToken);

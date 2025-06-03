@@ -1,4 +1,5 @@
 ﻿using Application.Features.Organizations.Commands;
+using Application.Features.Organizations.Commands.CreateOrganization;
 using AutoMapper;
 using Domain.Entities;
 
